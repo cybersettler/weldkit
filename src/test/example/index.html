@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/node_modules/systemjs/dist/system-production.js"></script>
+    <script>
+      /* global SystemJS */
+      SystemJS.config({
+        baseURL: '/node_modules',
+        map: {
+          handlebars: 'handlebars/dist/handlebars.js',
+          i18next: 'i18next/i18next.js'
+        },
+      });
+    </script>
+    <script type="module" src="/index.js"></script>
+    <script type="module" src="component/web/App/AppElement.js"></script>
+    <script type="module" src="component/ui/List/ListElement.js"></script>
+    <script type="module" src="component/page/Index/IndexElement.js"></script>
+    <script type="module" src="component/page/Detail/DetailElement.js"></script>
+    <style></style>
+</head>
+<body>
+    <web-app data-role="app"></web-app>
+</body>
+</html>

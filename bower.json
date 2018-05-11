@@ -1,0 +1,26 @@
+{
+  "name": "ackee",
+  "homepage": "https://github.com/cybersettler/ackee",
+  "authors": [
+    "Javier Escobar <cybersettler@babylonone.com>"
+  ],
+  "description": "HTML elements library for web components",
+  "main": "index.js",
+  "keywords": [
+    "html5",
+    "webcomponent"
+  ],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "handlebars": "^4.0.11",
+    "i18next": "^11.0.0",
+    "system-production": "https://raw.githubusercontent.com/systemjs/systemjs/master/dist/system-production.js"
+  }
+}

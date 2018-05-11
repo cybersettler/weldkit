@@ -1,0 +1,14 @@
+{
+  "name": "system-production",
+  "_cacheHeaders": {
+    "ETag": "\"04ff6441e78d267cd8c127fc3715fe113cd2944a\"",
+    "Content-Length": "7617",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:04ff6441e",
+  "main": "index.js",
+  "_source": "https://raw.githubusercontent.com/systemjs/systemjs/master/dist/system-production.js",
+  "_target": "*",
+  "_originalSource": "https://raw.githubusercontent.com/systemjs/systemjs/master/dist/system-production.js",
+  "_direct": true
+}
