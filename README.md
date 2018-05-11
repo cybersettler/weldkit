@@ -46,7 +46,7 @@ between different screens to interact with the application.
 To use a base element, simply import it and extend your class,
 like so:
 
-```[javascript]
+```javascript
 
 // MyAppElement.js
 import {WebAppElement} from 'npm_modules/ackee/index.js';
@@ -73,7 +73,7 @@ as (see MDN guide: [Using custom elements](https://developer.mozilla.org/en-US/d
 Your element should be a module, so it has to be exported. But before
 you should register it like so:
 
-```[javascript]
+```javascript
 customElements.define('web-app', MyAppElement);
 ```
 
