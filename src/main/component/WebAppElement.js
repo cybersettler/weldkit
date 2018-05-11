@@ -1,20 +1,12 @@
-/**
- * Core API.
- * @namespace Core
- */
-
-/* global HTMLElement */
-
 import WebScope from './WebScope.js';
 import NavigationService from '../service/NavigationService.js';
 
+/* global HTMLElement */
+
 /**
- * Abstract controller extended by web-app element.
- * @constructor
- * @memberof Core
- * @param{ Array } args - The arguments.
+ * Base class to be extended by web app elements
  */
-class AbstractWebElement extends HTMLElement {
+class WebAppElement extends HTMLElement {
   /**
    * @constructor
    */
@@ -26,4 +18,4 @@ class AbstractWebElement extends HTMLElement {
   }
 }
 
-export default AbstractWebElement;
+export default WebAppElement;

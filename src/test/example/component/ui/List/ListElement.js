@@ -1,9 +1,9 @@
-import {AbstractFragmentElement} from '/index.js';
+import {FragmentElement} from '/index.js';
 
 /**
  * List custom element
  */
-class ListElement extends AbstractFragmentElement {
+class ListElement extends FragmentElement {
   /**
    * Get observed dynamic attributes.
    * If attributes are not specified here

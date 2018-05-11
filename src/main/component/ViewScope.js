@@ -1,9 +1,9 @@
-import AbstractScope from './xAbstractScope.js';
+import Scope from './Scope.js';
 
 /**
  * Scope used by view elements
  */
-class ViewScope extends AbstractScope {
+class ViewScope extends Scope {
   /**
    * @constructor
    * @param {HTMLElement} currentElement

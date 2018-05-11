@@ -1,19 +1,13 @@
-/**
- * ui API.
- * @namespace UI
- */
+import FragmentScope from './FragmentScope.js';
 
 /* global HTMLElement */
-
-import FragmentScope from './FragmentScope.js';
 
 const dataAttrPattern = /data-(\w+)/;
 
 /**
- * Abstract controller extended by ui controllers.
- * @constructor
+ * Base class extended by fragment elements
  */
-class AbstractFragmentElement extends HTMLElement {
+class FragmentElement extends HTMLElement {
   /**
    * @constructor
    */
@@ -39,4 +33,4 @@ class AbstractFragmentElement extends HTMLElement {
   }
 }
 
-export default AbstractFragmentElement;
+export default FragmentElement;

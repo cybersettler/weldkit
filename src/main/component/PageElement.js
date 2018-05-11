@@ -1,20 +1,13 @@
-/**
- * view API.
- * @namespace View
- */
-
 import PageScope from './PageScope.js';
 
 /* eslint-env browser */
 
 /**
- * Abstract controller extended by page elements
- * @constructor
- * @param { Array } args - The arguments.
+ * Base class used by page elements
  */
-class AbstractPageElement extends HTMLElement {
+class PageElement extends HTMLElement {
   /**
-   * @constructs {AbstractPageElement}
+   * @constructs {PageElement}
    */
   constructor() {
     super();
@@ -31,4 +24,4 @@ class AbstractPageElement extends HTMLElement {
   }
 }
 
-export default AbstractPageElement;
+export default PageElement;

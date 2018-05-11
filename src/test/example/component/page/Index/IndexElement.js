@@ -1,9 +1,9 @@
-import {AbstractPageElement} from '/index.js';
+import {PageElement} from '/index.js';
 
 /**
  * App element
  */
-class IndexElement extends AbstractPageElement {
+class IndexElement extends PageElement {
   /**
    * @constructor
    */

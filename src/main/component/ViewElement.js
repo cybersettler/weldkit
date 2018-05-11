@@ -1,18 +1,11 @@
-/**
-* view API.
-* @namespace View
-*/
-
 import ViewScope from './ViewScope.js';
 
 /* eslint-env browser */
 
 /**
-* Abstract controller extended by ui controllers.
-* @constructor
-* @param { Array } args - The arguments.
+* Base class extended by view elements.
 */
-class AbstractViewElement extends HTMLElement {
+class ViewElement extends HTMLElement {
   constructor() {
     super();
     this.scope = new ViewScope(this);
@@ -28,4 +21,4 @@ class AbstractViewElement extends HTMLElement {
   }
 }
 
-export default AbstractViewElement;
+export default ViewElement;

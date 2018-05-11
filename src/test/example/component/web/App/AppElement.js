@@ -1,9 +1,9 @@
-import {AbstractWebElement} from '/index.js';
+import {WebAppElement} from '/index.js';
 
 /**
  * App element
  */
-class AppElement extends AbstractWebElement {
+class AppElement extends WebAppElement {
   /**
    * @constructor
    */
