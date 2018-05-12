@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/cybersettler/ackee#readme",
   "dependencies": {
+    "d3": "^5.4.0",
     "handlebars": "^4.0.11",
     "i18next": "^11.2.3",
     "systemjs": "^0.21.2"

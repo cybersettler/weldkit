@@ -74,6 +74,36 @@ Your element should be a module, so it has to be exported. But before
 you should register it like so:
 
 ```javascript
-customElements.define('web-app', MyAppElement);
+customElements.define('my-app', MyAppElement);
 ```
+
+To run your app, you need an HTML document that looks similar to this:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/node_modules/systemjs/dist/system-production.js"></script>
+    <script type="module" src="node_modules/ackee/index.js"></script>
+    <script type="module" src="MyAppElement.js"></script>
+</head>
+<body>
+    <my-app data-role="app"></my-app>
+</body>
+</html>
+```
+
+Ackee relies on SystemJS to handle commonJS modules, so make
+sure to include the library first, like in the example above.
+Also note the role attribute, ackee relies on such attributes
+to identify special components since the tag name is
+arbitrary and thus cannot be used to identify a component's
+role. Other roles are __page__, for page elements and __view__,
+for view elements.
+
+Check out the [web app example](https://github.com/cybersettler/ackee/tree/master/src/test/example)
+included in the project.
+
+Currently _ackee_ is under heavy development, so it is unstable.
+Keep tuned to our twitter for updates.
 

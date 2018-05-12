@@ -5,6 +5,15 @@ import FragmentElement from '/src/main/component/FragmentElement.js';
 import WebScope from '/src/main/component/Scope.js';
 import FragmentScope from '/src/main/component/FragmentScope.js';
 
+/* global SystemJS */
+SystemJS.config({
+  baseURL: '/node_modules',
+  map: {
+    handlebars: 'handlebars/dist/handlebars.js',
+    i18next: 'i18next/i18next.js',
+  },
+});
+
 export {
   WebAppElement,
   PageElement,

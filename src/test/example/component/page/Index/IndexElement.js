@@ -24,8 +24,11 @@ class IndexElement extends PageElement {
    * @return {Array}
    */
   getRecords() {
-    return ["{{i18n 'fruit.apple'}}", "{{i18n 'fruit.banana'}}",
-      "{{i18n 'fruit.coconut'}}"];
+    return [
+        "{{i18n 'fruit.apple'}}",
+      "{{i18n 'fruit.banana'}}",
+      "{{i18n 'fruit.coconut'}}"
+    ];
   }
 }
 
