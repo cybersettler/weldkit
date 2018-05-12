@@ -1,5 +1,5 @@
 {
-  "name": "ackee",
+  "name": "weldkit",
   "version": "0.0.1",
   "description": "HTML elements library for web components",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js"
   },
-  "repository": "git+https://github.com/cybersettler/ackee.git",
+  "repository": "git+https://github.com/cybersettler/weldkit.git",
   "keywords": [
     "html5",
     "webcomponent"
@@ -22,9 +22,9 @@
   "author": "Javier Escobar <cybersettler@babylonone.com>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/cybersettler/ackee/issues"
+    "url": "https://github.com/cybersettler/weldkit/issues"
   },
-  "homepage": "https://github.com/cybersettler/ackee#readme",
+  "homepage": "https://github.com/cybersettler/weldkit#readme",
   "dependencies": {
     "d3": "^5.4.0",
     "handlebars": "^4.0.11",

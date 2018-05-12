@@ -1,4 +1,4 @@
-# Ackee
+# Weldkit
 
 > Create web and desktop applications using web components.
 
@@ -6,7 +6,7 @@
 
 ```bash
 cd myproject
-npm install ackee
+npm install weldkit
 ```
 
 ## Getting started
@@ -19,7 +19,7 @@ There are four base classes to create web components:
 * _ViewElement_: Used to create view elements
 * _FragmentElement_: Used to create fragment elements
 
-All these are modules exported by the ackee module. These elements
+All these are modules exported by the weldkit module. These elements
 are meant to be used in a hierarchical way, so the App element should
 be at the at the root of the documents body.
 
@@ -49,7 +49,7 @@ like so:
 ```javascript
 
 // MyAppElement.js
-import {WebAppElement} from 'npm_modules/ackee/index.js';
+import {WebAppElement} from 'npm_modules/weldkit/index.js';
 
 class MyAppElement extends WebAppElement {
   
@@ -84,7 +84,7 @@ To run your app, you need an HTML document that looks similar to this:
 <html>
 <head>
     <script src="/node_modules/systemjs/dist/system-production.js"></script>
-    <script type="module" src="node_modules/ackee/index.js"></script>
+    <script type="module" src="node_modules/weldkit/index.js"></script>
     <script type="module" src="MyAppElement.js"></script>
 </head>
 <body>
@@ -93,17 +93,17 @@ To run your app, you need an HTML document that looks similar to this:
 </html>
 ```
 
-Ackee relies on SystemJS to handle commonJS modules, so make
+weldkit relies on SystemJS to handle commonJS modules, so make
 sure to include the library first, like in the example above.
-Also note the role attribute, ackee relies on such attributes
+Also note the role attribute, weldkit relies on such attributes
 to identify special components since the tag name is
 arbitrary and thus cannot be used to identify a component's
-role. Other roles are __page__, for page elements and __view__,
+role. Other roles are _page_, for page elements and _view_,
 for view elements.
 
-Check out the [web app example](https://github.com/cybersettler/ackee/tree/master/src/test/example)
+Check out the [web app example](https://github.com/cybersettler/weldkit/tree/master/src/test/example)
 included in the project.
 
-Currently _ackee_ is under heavy development, so it is unstable.
+Currently _weldkit_ is under heavy development, so it is unstable.
 Keep tuned to our twitter for updates.
 
