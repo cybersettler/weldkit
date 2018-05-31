@@ -130,23 +130,10 @@ function addLightTemplate(lightTemplate, scope) {
 
 function initializeLocalContext(scope) {
   let element = scope.getCurrentElement();
-  let viewPath = getModulePathFromTagName(element) + 'View.html';
-  return ViewFileService.load(viewPath).then(function(localContext) {
+  return ViewFileService.loadTemplateForElement(element)
+  .then(function(localContext) {
     scope.localContext = localContext;
   });
-}
-
-function getModulePathFromTagName(element) {
-  let parts = element.tagName.toLowerCase().split('-');
-  return parts.reduce(function(result, item, index) {
-    let part;
-    if (index === 0) {
-      part = item;
-    } else {
-      part = StringUtil.capitalize(item);
-    }
-    return result + part + '/';
-  }, 'component/');
 }
 
 function initializeTemplateEngine(scope) {
