@@ -38,9 +38,12 @@ class ListElement extends FragmentElement {
     list.slot = 'content';
     this.innerHTML = '';
     scope.getModel().then((result) => {
-      result.forEach((text) => {
+      result.forEach((text, i) => {
         let item = document.createElement('li');
-        item.textContent = scope.templateEngine.render(text);
+        let a = document.createElement('a');
+        a.href = '#page-detail--'+i;
+        a.textContent = scope.templateEngine.render(text);
+        item.appendChild(a);
         list.appendChild(item);
       });
       element.appendChild(list);

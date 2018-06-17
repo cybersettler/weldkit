@@ -1,5 +1,9 @@
 const hashPattern = /^#((page-\w+-?\w*)(-{2}\w*)?)$/;
 
+function getPageId(pageId) {
+  return pageId;
+}
+
 let NavigationService = {
   updatePage: function() {
     if (hashPattern.test(window.location.hash)) {
