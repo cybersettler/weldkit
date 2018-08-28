@@ -1,4 +1,3 @@
-import StringUtil from '../util/StringUtil.js';
 import ViewFileService from '../service/ViewFileService.js';
 import TemplateEngineService from '../service/TemplateEngineService.js';
 import ApiService from '../service/ApiService.js';

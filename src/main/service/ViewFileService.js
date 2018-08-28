@@ -17,15 +17,17 @@ const ViewFileService = {
   loadTemplateForElement: function(element) {
     let path = getModulePathFromTagName(element);
     let service = this;
-    return this.load('component/' + path + 'View.html').
+    return this.load('component/' + path + 'view.html').
         then((result) => result, () => {
-          return service.load('node_modules/' + path + 'dist/view/main.html');
+          return service.load('node_modules/' + path + 'dist/view/view.html');
         }).
         then((result) => result, () => {
-          return service.load('node_modules/' + path + 'main.html');
+          return service.load('node_modules/' + path + 'view.html');
         });
   },
 };
+
+/* eslint-disable require-jsdoc */
 
 function getModulePathFromTagName(element) {
   let parts = element.tagName.toLowerCase().split('-');
@@ -39,5 +41,7 @@ function getModulePathFromTagName(element) {
     return result + part + '/';
   }, '');
 }
+
+/* eslint-enable require-jsdoc */
 
 export default ViewFileService;
