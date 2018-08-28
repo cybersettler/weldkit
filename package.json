@@ -1,6 +1,6 @@
 {
   "name": "weldkit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "HTML elements library for web components",
   "main": "index.js",
   "scripts": {
