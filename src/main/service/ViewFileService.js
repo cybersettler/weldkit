@@ -17,12 +17,12 @@ const ViewFileService = {
   loadTemplateForElement: function(element) {
     let path = getModulePathFromTagName(element);
     let service = this;
-    return this.load('component/' + path + 'view.html').
+    return this.load(`/frontend/component/${path}view.html`).
         then((result) => result, () => {
-          return service.load('node_modules/' + path + 'dist/view/view.html');
+          return service.load(`/node_modules/${path}dist/view/view.html`);
         }).
         then((result) => result, () => {
-          return service.load('node_modules/' + path + 'view.html');
+          return service.load(`/node_modules/${path}view.html`);
         });
   },
 };
