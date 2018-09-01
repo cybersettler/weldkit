@@ -1,5 +1,5 @@
 import TemplateEngineService from './TemplateEngineService.js';
-import i18next from '../../../node_modules/i18next/dist/es/index.js';
+import i18next from '/node_modules/i18next/dist/es/index.js';
 
 /**
  * Manage resource boundles for tranlations.
