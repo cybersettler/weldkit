@@ -15,19 +15,37 @@ const ViewFileService = {
     return promise;
   },
   loadTemplateForElement: function(element) {
-    let path = getModulePathFromTagName(element);
-    let service = this;
-    return this.load(`/frontend/component/${path}view.html`).
-        then((result) => result, () => {
-          return service.load(`/node_modules/${path}dist/view/view.html`);
-        }).
-        then((result) => result, () => {
-          return service.load(`/node_modules/${path}view.html`);
-        });
+    return getModuleViewPath(element).then((path) => {
+      return this.load(path);
+    });
   },
 };
 
 /* eslint-disable require-jsdoc */
+
+function getModuleViewPath(element) {
+  let path = element.tagName.toLowerCase();
+  let url = `/node_modules/${path}/dist/view/view.html`;
+  let options = {
+    method: 'HEAD',
+  };
+  return fetch(url, options).then((response) => {
+    if (response.ok) {
+      return response;
+    } else {
+      url = `/node_modules/${path}/view.html`;
+      return fetch(url, options);
+    }
+  }).then((response) => {
+    if (response.ok) {
+      return response;
+    } else {
+      path = getModulePathFromTagName(element);
+      url = `/frontend/component/${path}view.html`;
+      return fetch(url, options);
+    }
+  }).then(() => url);
+}
 
 function getModulePathFromTagName(element) {
   let parts = element.tagName.toLowerCase().split('-');
