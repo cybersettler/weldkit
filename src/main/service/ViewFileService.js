@@ -25,7 +25,7 @@ const ViewFileService = {
 
 function getModuleViewPath(element) {
   let path = element.tagName.toLowerCase();
-  let url = `/node_modules/${path}/dist/view/view.html`;
+  let url = `/node_modules/${path}/dist/main/view/view.html`;
   let options = {
     method: 'HEAD',
   };
