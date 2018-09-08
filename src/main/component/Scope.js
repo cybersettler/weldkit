@@ -1,6 +1,10 @@
 import ViewFileService from '../service/ViewFileService.js';
 import TemplateEngineService from '../service/TemplateEngineService.js';
 import ApiService from '../service/ApiService.js';
+import RestService from '../service/web/RestService.js';
+
+const TemplatePattern = /^(<template>)|(<\/template>)$/g;
+const ViewFilenamePattern = /(\w+)[.]html$/;
 
 /**
  * This class is extended by scope classes
@@ -25,14 +29,9 @@ class Scope {
     });
     let promises = [
       appReady,
-      initializeLocalContext(this),
       initializeTemplateEngine(this),
     ];
-    this.onAppReady = Promise.all(promises).then(function() {
-      addTemplate(scope);
-    }).catch((err) => {
-      throw new Error(err);
-    });
+    this.onAppReady = Promise.all(promises);
   }
 
   /**
@@ -60,22 +59,6 @@ class Scope {
   }
 
   /**
-   * Returns the main html template of the component.
-   * @return { Element | null } An html element.
-   */
-  getLightTemplate() {
-    return this.localContext.querySelector('template.light');
-  }
-
-  /**
-   * Returns the shadow html template of the component.
-   * @return { Element | null } An html element.
-   */
-  getShadowTemplate() {
-    return this.localContext.querySelector('template.shadow');
-  }
-
-  /**
    * Binds a data attribute from the element to a
    * parent element API.
    * @param {string} attributeName - Name of the attribute excluding the 'data-'
@@ -83,7 +66,7 @@ class Scope {
    */
   bindAttribute(attributeName) {
     ApiService.bindAttribute(attributeName, this);
-  };
+  }
 
   /**
    * Binds a list of data attributes from the element to a
@@ -93,11 +76,94 @@ class Scope {
    */
   bindAttributes(attributeList) {
     ApiService.bindAttributes(attributeList, this);
-  };
+  }
+
+  appendShadowViewFromTemplate(url) {
+    let scope = this;
+    return this.importTemplate(url).then((template) => {
+      addShadowRootTemplate(template, scope);
+      return template;
+    });
+  }
+
+  appendViewFromTemplate(url) {
+    let scope = this;
+    return this.importTemplate(url).then((template) => {
+      addLightTemplate(template, scope);
+      return template;
+    });
+  }
+
+  loadTemplate(url) {
+    return RestService.getRepresentation(url).
+        then(readResponseText).
+        then(parseTemplateResource);
+  }
+
+  importTemplate(url) {
+    let previouslyImportedTemplate = this.getTemplate(url);
+    let result;
+    let scope = this;
+    if (previouslyImportedTemplate) {
+      result = Promise.resolve(template);
+    } else {
+      result = this.loadTemplate(url).then((template) => {
+        template.id = getTemplateId(url, scope);
+        document.body.appendChild(template);
+        return template;
+      });
+    }
+    return result;
+  }
+
+  getTemplate(url) {
+    let templateId = getTemplateId(url, this);
+    return document.querySelector('#' + templateId);
+  }
+
+  getModuleDir() {
+    let moduleName = this.getCurrentElement().tagName.toLowerCase();
+    let found = Array
+      .from(document.querySelectorAll('script[type=module]'))
+      .find((item) => item.src.indexOf(moduleName) > -1);
+    let result = '';
+    if (found) {
+      result = found.src.replace(/(\w+[.]js)$/, '');
+    } else {
+      result = '/';
+    }
+    return result;
+  }
 }
 
 // Private functions
 /* eslint-disable require-jsdoc */
+function getTemplateId(url, scope) {
+  let filename;
+  if (ViewFilenamePattern.test(url)) {
+    let match = ViewFilenamePattern.exec(url);
+    filename = match.length === 2 ? match[1].toUpperCase() : '';
+  } else {
+    filename = '';
+  }
+  return `${scope.getCurrentElement().tagName}-${filename}-TEMPLATE`;
+}
+
+function readResponseText(response) {
+  if (response.ok) {
+    return response.text();
+  } else {
+    throw new Error('Something went wrong trying to fetch', response.url);
+  }
+}
+
+function parseTemplateResource(htmlString) {
+  let result = document.createElement('template');
+  let content = htmlString.trim().replace(TemplatePattern, '');
+  result.innerHTML = content;
+  return result;
+}
+
 function addTemplate(scope) {
   let lightTemplate = scope.getLightTemplate();
   let shadowTemplate = scope.getShadowTemplate();
@@ -109,12 +175,14 @@ function addTemplate(scope) {
 }
 
 function addShadowRootTemplate(shadowTemplate, scope) {
+
   // Creates the shadow root
-  let root;
-  if (scope.getCurrentElement().attachShadowRoot) {
-    root = scope.getCurrentElement().attachShadowRoot();
-  } else {
-    root = scope.getCurrentElement().createShadowRoot();
+  let element = scope.getCurrentElement();
+  let root = element.shadowRoot;
+  if (!root && element.attachShadowRoot) {
+    root = element.attachShadowRoot();
+  } else if (!root && element.createShadowRoot) {
+    root = element.createShadowRoot();
   }
 
   // Adds a template clone into shadow root
@@ -125,14 +193,6 @@ function addShadowRootTemplate(shadowTemplate, scope) {
 function addLightTemplate(lightTemplate, scope) {
   let clone = document.importNode(lightTemplate.content, true);
   scope.getCurrentElement().appendChild(clone);
-}
-
-function initializeLocalContext(scope) {
-  let element = scope.getCurrentElement();
-  return ViewFileService.loadTemplateForElement(element)
-  .then(function(localContext) {
-    scope.localContext = localContext;
-  });
 }
 
 function initializeTemplateEngine(scope) {

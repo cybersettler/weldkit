@@ -98,8 +98,8 @@ class WebScope extends Scope {
   resolveAppReady() {
     let app = this.getCurrentElement();
     let ready = new Event('appReady');
-    app.dispatchEvent(ready);
     app.dataset.status = 'ready';
+    app.dispatchEvent(ready);
   }
 }
 
