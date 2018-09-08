@@ -20,14 +20,14 @@ class PageScope extends Scope {
 function onPageNodeConnected(page) {
   let app = document.querySelector('[data-role=app]');
 
-  var observerOptions = {
+  let observerOptions = {
     childList: true,
     attributes: false,
     subtree: false,
   };
 
   return new Promise((resolve) => {
-    let observer = new MutationObserver((mutationList, ob) => {
+    let observer = new MutationObserver((mutationList) => {
       mutationList.forEach((mutation) => {
         if (mutation.type === 'childList' &&
             containsPageNode(mutationList, page)) {
