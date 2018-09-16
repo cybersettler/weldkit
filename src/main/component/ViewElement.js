@@ -6,10 +6,12 @@ import ViewScope from './ViewScope.js';
 * Base class extended by view elements.
 */
 class ViewElement extends HTMLElement {
+  /**
+   * @constructor
+   */
   constructor() {
     super();
     this.scope = new ViewScope(this);
-    this.dataset.role = 'view';
   }
   /**
    * Broadcasts a refresh event that triggers a render of all components
