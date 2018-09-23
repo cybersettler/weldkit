@@ -1,7 +1,5 @@
 import Scope from './Scope.js';
 
-const viewPattern = /^view-/;
-
 /**
  * Scope used in Fragment elements
  */
@@ -45,7 +43,7 @@ class FragmentScope extends Scope {
 }
 
 function isViewComponent(el) { // eslint-disable-line require-jsdoc
-  return el.tagName && viewPattern.test(el.tagName.toLowerCase());
+  return el.dataset && el.dataset.role === 'view';
 }
 
 export default FragmentScope;
