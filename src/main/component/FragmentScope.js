@@ -10,9 +10,9 @@ class FragmentScope extends Scope {
    */
   constructor(currentElement) {
     super(currentElement);
-    currentElement.addEventListener('render', function() {
+    currentElement.addEventListener('render', function(event) {
       if (currentElement.render) {
-        currentElement.render();
+        currentElement.render(event);
       }
     });
   }
