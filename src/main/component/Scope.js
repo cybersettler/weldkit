@@ -134,6 +134,10 @@ class Scope {
     }
     return result;
   }
+
+  importESModule(moduleName) {
+    return System.import(moduleName);
+  }
 }
 
 // Private functions

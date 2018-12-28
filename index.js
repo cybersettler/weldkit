@@ -11,6 +11,7 @@ SystemJS.config({
   map: {
     handlebars: 'handlebars/dist/handlebars.js',
     i18next: 'i18next/i18next.js',
+    d3: 'd3/dist/d3.min.js',
   },
 });
 
