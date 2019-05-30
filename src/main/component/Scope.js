@@ -187,6 +187,8 @@ function addShadowRootTemplate(shadowTemplate, scope) {
     root = element.attachShadowRoot();
   } else if (!root && element.createShadowRoot) {
     root = element.createShadowRoot();
+  } else if (element.attachShadow) {
+    root = element.attachShadow({mode: 'open'});
   }
 
   // Adds a template clone into shadow root
